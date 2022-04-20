@@ -1,0 +1,14 @@
+{
+  "name": "scoreboards",
+  "version": "1.0.0",
+  "description": "Api to fetch scoreboards",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "author": "Musa Yasin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
