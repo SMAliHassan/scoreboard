@@ -1,3 +1,11 @@
+const mongoose = require("mongoose");
+
+const scoreSchema = new mongoose.Schema({
+    scoreboard: {
+        type: String
+    }
+});
+
 var scoreboard = [
 {
     "name": "saaaaaaa",
@@ -15,5 +23,13 @@ var scoreboard = [
     "email" : "saaawcw@gmail.com"
 }
 ];
+
+const scoreboard = mongoose.model("scoreBoard", scoreSchema);
+
+module.exports = scoreboard;
+
+
+
+
 
 module.exports = scoreboard;

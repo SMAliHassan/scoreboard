@@ -1,14 +1,19 @@
-var scoreboard = require('../model/scoreboard.js')
+var scoreBoard = require('../model/scoreboard.js')
 
 module.exports = {
 
     post : (req, res) => {
-        scoreboard = req.body
-        res.send(scoreboard)
+        scoreBoard.insertMany(arr, function(error, docs) {
+            if (error) {
+                res.send(error)
+            }
+            else res.send('success' + docs)
+        });
+
     },
 
     get : (req, res) => {
-        res.send(scoreboard)
+        res.send(scoreBoard)
     }
 
 }
