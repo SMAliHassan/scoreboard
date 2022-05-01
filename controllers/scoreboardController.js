@@ -1,19 +1,44 @@
-var scoreBoard = require('../model/scoreboard.js')
+const Scoreboard = require("../model/scoreboardModel.js");
 
 module.exports = {
+  post: async (req, res) => {
+    try {
+      const data = await ScoreBoard.insertMany(arr);
 
-    post : (req, res) => {
-        scoreBoard.insertMany(arr, function(error, docs) {
-            if (error) {
-                res.send(error)
-            }
-            else res.send('success' + docs)
+      console.log(data); // DELETE ME PLEASE!
+
+      res.status(201).json({
+        status: "success",
+        message: "Successfully created scoreboards!",
+        data,
+      });
+    } catch (err) {
+      console.log(err.message, err);
+      res
+        .status(400)
+        .json({
+          status: "failed",
+          message: "Could not create the scoreboards!",
         });
-
-    },
-
-    get : (req, res) => {
-        res.send(scoreBoard)
     }
+  },
 
-}
+  get: async (req, res) => {
+    try {
+      const data = await Scoreboard.find();
+
+      console.log(data); // DELETE ME PLEASE!
+
+      res.status(200).json({ status: "success", data });
+    } catch (err) {
+      console.log(err, err.message);
+      res
+        .status(404)
+        .json({
+          status: "fail",
+          message: "Could not get the scoreboards!",
+          data,
+        });
+    }
+  },
+};

@@ -4,11 +4,14 @@
   "description": "Api to fetch scoreboards",
   "main": "index.js",
   "scripts": {
-    "test": "node ."
+    "test": "node .",
+    "start-dev": "nodemon index.js"
   },
   "author": "Musa Yasin",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.3"
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.3.1"
   }
 }
