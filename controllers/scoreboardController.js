@@ -3,7 +3,8 @@ const Scoreboard = require("../model/scoreboardModel.js");
 module.exports = {
   post: async (req, res) => {
     try {
-      const data = await ScoreBoard.insertMany(arr);
+      console.log(req.body);
+      const data = await Scoreboard.insertMany(req.body.data);
 
       console.log(data); // DELETE ME PLEASE!
 
@@ -14,12 +15,11 @@ module.exports = {
       });
     } catch (err) {
       console.log(err.message, err);
-      res
-        .status(400)
-        .json({
-          status: "failed",
-          message: "Could not create the scoreboards!",
-        });
+
+      res.status(400).json({
+        status: "failed",
+        message: "Could not create the scoreboards!",
+      });
     }
   },
 
@@ -32,13 +32,12 @@ module.exports = {
       res.status(200).json({ status: "success", data });
     } catch (err) {
       console.log(err, err.message);
-      res
-        .status(404)
-        .json({
-          status: "fail",
-          message: "Could not get the scoreboards!",
-          data,
-        });
+
+      res.status(404).json({
+        status: "fail",
+        message: "Could not get the scoreboards!",
+        data,
+      });
     }
   },
 };
