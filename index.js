@@ -1,5 +1,6 @@
 require("dotenv").config({ path: "./config.env" });
 
+const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 var app = express();
@@ -15,6 +16,7 @@ mongoose
   .then(() => console.log("Connection made successfully with database."))
   .catch((err) => console.log("Error connection to the database", err.message));
 
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

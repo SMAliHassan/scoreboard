@@ -3,10 +3,9 @@ const Scoreboard = require("../model/scoreboardModel.js");
 module.exports = {
   post: async (req, res) => {
     try {
-      console.log(req.body);
-      const data = await Scoreboard.insertMany(req.body.data);
+      await Scoreboard.deleteMany({}); //// Delete all previous scoreboards
 
-      console.log(data); // DELETE ME PLEASE!
+      const data = await Scoreboard.insertMany(req.body.data); //// Create new scoreboards
 
       res.status(201).json({
         status: "success",
@@ -14,7 +13,7 @@ module.exports = {
         data,
       });
     } catch (err) {
-      console.log(err.message, err);
+      console.log(err.message);
 
       res.status(400).json({
         status: "failed",
@@ -25,13 +24,11 @@ module.exports = {
 
   get: async (req, res) => {
     try {
-      const data = await Scoreboard.find();
-
-      console.log(data); // DELETE ME PLEASE!
+      const data = await Scoreboard.find().select("-__v");
 
       res.status(200).json({ status: "success", data });
     } catch (err) {
-      console.log(err, err.message);
+      console.log(err.message);
 
       res.status(404).json({
         status: "fail",
